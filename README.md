@@ -1,24 +1,19 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Excel data importer using Rails API only (sample workbook included). 
 
-Things you may want to cover:
+* Ruby version: 2.7.1
 
-* Ruby version
+* System dependencies: Rails 6.0.3.2
 
-* System dependencies
+* Configuration: `bundle install`
 
-* Configuration
+* Database: sqlite3
 
-* Database creation
+* Start server: `bin/rails s`
 
-* Database initialization
+* Interactive Ruby Console: `bin/rails c`
 
-* How to run the test suite
+* Services: `rake -T` to check list of rake tasks
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Core tasks to import users and companies: `rake import:user` & `rake import:company`
