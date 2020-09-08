@@ -40,7 +40,7 @@ namespace :import do
         next
       end
 
-      company = new Company(company)
+      company = Company.new(company_data)
       company.save!
     end
   end
