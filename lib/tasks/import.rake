@@ -2,8 +2,8 @@ require 'roo'
 
 namespace :import do
   desc "import user data"
-  task data: :environment do
-    spreadsheet = Roo::Spreadsheet.open('users_file.xlsx').sheet('Users')
+  task user: :environment do
+    spreadsheet = Roo::Spreadsheet.open('data.xlsx').sheet('Users')
 
     headers = spreadsheet.row(1);
 
@@ -21,6 +21,27 @@ namespace :import do
 
       puts "Saving User with email '#{user.email}'"
       user.save!
+    end
+  end
+
+  desc "import company data"
+  task company: :environment do
+    companies = Roo::Spreadsheet.open('data.xlsx').sheet('Companies')
+
+    headers = companies.row(1)
+
+    companies.each_with_index do |row, idx|
+      next if idx == 0
+      company_data = Hash[[headers, row].transpose]
+      puts company_data
+
+      if Company.exists?(name: company_data['name'])
+        puts "skipping company_data['name'] since already exists"
+        next
+      end
+
+      company = new Company(company)
+      company.save!
     end
   end
 end
